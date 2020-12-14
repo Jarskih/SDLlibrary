@@ -21,6 +21,22 @@ namespace SDLlib
 		~Window();
 		[[nodiscard]] SDL_Window* get() const;
 		[[nodiscard]] bool is_valid() const;
+		[[nodiscard]] bool IsWindowBordered() const;
+		[[nodiscard]] bool IsWindowMaximized() const;
+		[[nodiscard]] bool IsWindowMinimized() const;
+		[[nodiscard]] bool IsWindowRaised() const;
+		void MaximizeWindow() const;
+		void MinimizeWindow() const;
+		void RaiseWindow() const;
+		void RestoreWindow() const;
+		void SetWindowBordered(bool is_bordered) const;
+		bool SetWindowBrightness(float brightness) const;
+		bool SetWindowDisplayMode(SDL_DisplayMode* display_mode) const;
+		bool SetFullscreen(Uint32 flags) const;
+		void SetWindowPosition(int x, int y);
+		void SetWindowSize(int width, int height);
+		void SetWindowTitle(const std::string& title);
+
 	private:
 		SDL_Window* window_ = nullptr;
 	};
