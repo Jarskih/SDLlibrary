@@ -1,0 +1,8 @@
+{
+  "name": "sdlwrapper",
+  "version-string": "0.00.01",
+  "dependencies": [
+    "sdl2",
+    "sdl2-image"
+  ]
+}

@@ -1,0 +1,20 @@
+﻿#pragma once
+#include <SDL2/SDL.h>
+#include <filesystem>
+
+namespace SDLlib {
+	class Surface;
+	class Renderer;
+
+	class Texture
+	{
+	public:
+		Texture(const Renderer& renderer, Uint32 format, int access, int w, int h);
+		Texture(const Renderer& renderer, std::filesystem::path file_path);
+		~Texture();
+		[[nodiscard]] bool is_valid() const;
+		[[nodiscard]] SDL_Texture* get() const;
+	private:
+		SDL_Texture* texture_ = nullptr;
+	};
+}
