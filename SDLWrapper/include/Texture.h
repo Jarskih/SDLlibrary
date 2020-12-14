@@ -9,8 +9,13 @@ namespace SDLlib {
 	class Texture
 	{
 	public:
+		Texture() = delete;
 		Texture(const Renderer& renderer, Uint32 format, int access, int w, int h);
 		Texture(const Renderer& renderer, std::filesystem::path file_path);
+		Texture(const Texture&) = delete;
+		Texture(const Texture&&) = delete;
+		Texture& operator=(const Texture&) = delete;
+		Texture& operator=(const Texture&&) = delete;
 		~Texture();
 		[[nodiscard]] bool is_valid() const;
 		[[nodiscard]] SDL_Texture* get() const;

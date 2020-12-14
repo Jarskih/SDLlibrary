@@ -12,10 +12,15 @@ namespace SDLlib
 	class Window
 	{
 	public:
+		Window() = delete;
 		Window(const std::string& title, Point position, WindowSize size, Uint32 flags);
+		Window(const Window&) = delete;
+		Window(const Window&&) = delete;
+		Window& operator=(const Window&) = delete;
+		Window& operator=(const Window&&) = delete;
 		~Window();
 		[[nodiscard]] SDL_Window* get() const;
-		bool is_valid() const;
+		[[nodiscard]] bool is_valid() const;
 	private:
 		SDL_Window* window_ = nullptr;
 	};

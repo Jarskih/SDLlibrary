@@ -3,9 +3,10 @@
 
 namespace SDLlib
 {
-	class Exception : public std::runtime_error
+	class Exception final : public std::runtime_error
 	{
 	public:
+		Exception() = delete;
 		explicit Exception(const char* function);
 		virtual ~Exception() noexcept = default;
 		static std::string create_error_message(const char* function, const char* error);

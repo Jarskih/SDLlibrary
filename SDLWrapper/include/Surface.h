@@ -9,7 +9,12 @@ namespace SDLlib
 	class Surface
 	{
 	public:
+		Surface() = delete;
 		Surface(std::filesystem::path path);
+		Surface(const Surface&) = delete;
+		Surface(const Surface&&) = delete;
+		Surface& operator=(const Surface&) = delete;
+		Surface& operator=(const Surface&&) = delete;
 		~Surface();
 		SDL_Surface* get() const;
 	private:

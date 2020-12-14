@@ -4,7 +4,6 @@
 #include <SDL2/SDL_image.h>
 
 #include "Color.h"
-#include "Definitions.h"
 #include "Point.h"
 #include "Renderer.h"
 #include "SDL.h"
