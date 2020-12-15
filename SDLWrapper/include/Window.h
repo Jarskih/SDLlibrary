@@ -6,14 +6,14 @@
 
 namespace SDLlib
 {
-	struct WindowSize;
+	struct Rectangle;
 	struct Point;
 
 	class Window
 	{
 	public:
 		Window() = delete;
-		Window(const std::string& title, Point position, WindowSize size, Uint32 flags);
+		Window(const std::string& title, Point position, Rectangle size, Uint32 flags);
 		Window(const Window&) = delete;
 		Window(const Window&&) = delete;
 		Window& operator=(const Window&) = delete;

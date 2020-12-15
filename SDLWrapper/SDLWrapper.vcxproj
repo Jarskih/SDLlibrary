@@ -24,7 +24,6 @@
     <ClInclude Include="include\Point.h" />
     <ClInclude Include="include\Renderer.h" />
     <ClInclude Include="include\SDL.h" />
-    <ClInclude Include="include\SDLImage.h" />
     <ClInclude Include="include\SDLlib.h" />
     <ClInclude Include="include\Surface.h" />
     <ClInclude Include="include\Texture.h" />
@@ -32,7 +31,6 @@
     <ClInclude Include="include\WindowSize.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\SDLImage.cpp" />
     <ClCompile Include="src\Color.cpp" />
     <ClCompile Include="src\Exception.cpp" />
     <ClCompile Include="src\Renderer.cpp" />

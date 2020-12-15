@@ -6,7 +6,7 @@
 
 namespace SDLlib
 {
-	Window::Window(const std::string& title, const Point position, const WindowSize size, const Uint32 flags)
+	Window::Window(const std::string& title, const Point position, const Rectangle size, const Uint32 flags)
 	{
 		window_ = SDL_CreateWindow(title.c_str(), position.x, position.y, size.w, size.h, flags);
 		if (window_ == nullptr)

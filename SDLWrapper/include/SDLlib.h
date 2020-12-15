@@ -7,7 +7,6 @@
 #include "Point.h"
 #include "Renderer.h"
 #include "SDL.h"
-#include "SDLImage.h"
 #include "Surface.h"
 #include "Texture.h"
 #include "Window.h"

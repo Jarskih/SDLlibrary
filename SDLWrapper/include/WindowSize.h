@@ -2,9 +2,9 @@
 
 namespace SDLlib
 {
-	struct WindowSize
+	struct Rectangle
 	{
-		WindowSize(int w, int h) : w(w), h(h)
+		Rectangle(int w, int h) : w(w), h(h)
 		{
 		}
 		int w;

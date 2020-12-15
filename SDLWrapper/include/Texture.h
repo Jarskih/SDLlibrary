@@ -2,6 +2,8 @@
 #include <SDL2/SDL.h>
 #include <filesystem>
 
+#include "WindowSize.h"
+
 namespace SDLlib {
 	class Surface;
 	class Renderer;
@@ -19,7 +21,10 @@ namespace SDLlib {
 		~Texture();
 		[[nodiscard]] bool IsValid() const;
 		[[nodiscard]] SDL_Texture* Get() const;
+		[[nodiscard]] Rectangle Size() const;
 	private:
 		SDL_Texture* texture_ = nullptr;
+		int width_;
+		int height_;
 	};
 }

@@ -33,9 +33,9 @@ namespace SDLlib
 		SDL_SetRenderDrawColor(renderer_, color.r, color.g, color.b, color.a);
 	}
 
-	void Renderer::RenderCopy(const Texture& texture) const
+	void Renderer::RenderCopy(const Texture& texture, const SDL_Rect* source, const SDL_Rect* destination) const
 	{
-		SDL_RenderCopy(renderer_, texture.Get(), nullptr, nullptr);
+		SDL_RenderCopy(renderer_, texture.Get(), source, destination);
 	}
 
 	void Renderer::RenderClear() const

@@ -5,6 +5,7 @@
 #include "Renderer.h"
 #include "Surface.h"
 #include "Exception.h"
+#include "WindowSize.h"
 
 namespace SDLlib
 {
@@ -25,6 +26,7 @@ namespace SDLlib
 		{
 			throw Exception("SDL_CreateTexture");
 		}
+		SDL_QueryTexture(texture_, nullptr, nullptr, &width_, &height_);
 	}
 
 	Texture::~Texture()
@@ -43,5 +45,10 @@ namespace SDLlib
 	SDL_Texture* Texture::Get() const
 	{
 		return texture_;
+	}
+
+	Rectangle Texture::Size() const
+	{
+		return Rectangle(width_, height_);
 	}
 }

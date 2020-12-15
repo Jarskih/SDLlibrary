@@ -1,14 +1,21 @@
 #pragma comment(lib, "../build/Debug/SDLWrapper.lib")
 
 #include <iostream>
+
+#include "Entity.h"
 #include "SDLlib.h"
 
+// Wrap main function to try and catch to catch exceptions from the library
+
 int main([[maybe_unused]] int, [[maybe_unused]] char* []) try {
+	// Init SDL
 	const SDLlib::SDL sdl(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
-	const SDLlib::SDLImage sdl_image(IMG_INIT_JPG | IMG_INIT_PNG);
-	const SDLlib::Window window("SampleApp", SDLlib::Point(0, 0), SDLlib::WindowSize(640, 480), SDL_WINDOW_SHOWN);
+
+	// Create window, renderer etc.
+	const SDLlib::Window window("SampleApp", SDLlib::Point(0, 0), SDLlib::Rectangle(640, 480), SDL_WINDOW_SHOWN);
 	const SDLlib::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
-	const SDLlib::Texture texture(renderer, "../assets/test.bmp");
+
+	const Entity entity(renderer, SDL_Point{ 400,200 }, SDLlib::Rectangle(100, 100), "../assets/entity.png");
 
 	while (true)
 	{
@@ -21,7 +28,7 @@ int main([[maybe_unused]] int, [[maybe_unused]] char* []) try {
 
 		renderer.SetRenderDrawColor(SDLlib::Color(0, 0, 0, 0));
 		renderer.RenderClear();
-		renderer.RenderCopy(texture);
+		entity.Render(renderer);
 		renderer.RenderPresent();
 	}
 

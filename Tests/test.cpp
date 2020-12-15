@@ -3,8 +3,6 @@
 #include "Renderer.h"
 #include "SDL.h"
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include "SDLImage.h"
 #include "Texture.h"
 #include "Window.h"
 
@@ -16,38 +14,15 @@ namespace SDLlib
 		EXPECT_EQ(sdl.IsValid(), true);
 	}
 
-	TEST(SDLImage, Init)
-	{
-		{
-			SDLImage sdl_image(IMG_INIT_JPG);
-			EXPECT_EQ(sdl_image.IsValid(IMG_INIT_PNG), true);
-		}
-
-		{
-			SDLImage sdl_image(IMG_INIT_JPG | IMG_INIT_PNG);
-			EXPECT_EQ(sdl_image.IsValid(IMG_INIT_JPG | IMG_INIT_PNG), true);
-		}
-
-		{
-			SDLImage sdl_image(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
-			EXPECT_EQ(sdl_image.IsValid(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF), true);
-		}
-
-		{
-			SDLImage sdl_image(IMG_INIT_JPG);
-			EXPECT_EQ(sdl_image.IsValid(IMG_INIT_PNG), false);
-		}
-	}
-
 	TEST(Window, CreateWindow)
 	{
-		Window window("test", Point(0, 0), WindowSize(640, 480), 0);
+		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 	}
 
 	TEST(Window, IsBordered)
 	{
-		Window window("test", Point(0, 0), WindowSize(640, 480), 0);
+		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 		window.SetWindowBordered(true);
 		EXPECT_EQ(window.IsBordered(), true);
@@ -58,7 +33,7 @@ namespace SDLlib
 
 	TEST(Window, Maximize)
 	{
-		Window window("test", Point(0, 0), WindowSize(640, 480), 0);
+		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 
 		EXPECT_EQ(window.IsMaximized(), false);
@@ -69,7 +44,7 @@ namespace SDLlib
 
 	TEST(Window, Minimize)
 	{
-		Window window("test", Point(0, 0), WindowSize(640, 480), 0);
+		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 
 		EXPECT_EQ(window.IsMinimized(), false);
@@ -80,7 +55,7 @@ namespace SDLlib
 
 	TEST(Window, Fullscreen)
 	{
-		Window window("test", Point(0, 0), WindowSize(640, 480), 0);
+		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 
 		EXPECT_EQ(window.IsFullscreen(), false);
@@ -96,7 +71,7 @@ namespace SDLlib
 
 	TEST(Window, SetBrightness)
 	{
-		Window window("test", Point(0, 0), WindowSize(640, 480), 0);
+		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 		bool result1 = window.SetWindowBrightness(0.0);
 		EXPECT_EQ(result1, true);
@@ -116,14 +91,14 @@ namespace SDLlib
 
 	TEST(Renderer, CreateRenderer)
 	{
-		const Window window("test", Point(0, 0), WindowSize(640, 480), 0);
+		const Window window("test", Point(0, 0), Rectangle(640, 480), 0);
 		Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 		EXPECT_EQ(renderer.IsValid(), true);
 	}
 
 	TEST(Texture, CreateTexture)
 	{
-		const Window window("test", Point(0, 0), WindowSize(640, 480), 0);
+		const Window window("test", Point(0, 0), Rectangle(640, 480), 0);
 		const Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 		const Texture texture(renderer, SDL_PIXELFORMAT_RGBA4444, SDL_TEXTUREACCESS_STATIC, 10, 10);
 		EXPECT_EQ(texture.IsValid(), true);
