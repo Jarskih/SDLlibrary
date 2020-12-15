@@ -20,7 +20,7 @@ namespace SDLlib
 	Texture::Texture(const Renderer& renderer, const std::filesystem::path file_path)
 	{
 		const Surface surface(file_path);
-		texture_ = SDL_CreateTextureFromSurface(renderer.get(), surface.get());
+		texture_ = SDL_CreateTextureFromSurface(renderer.get(), surface.Get());
 		if (texture_ == nullptr)
 		{
 			throw Exception("SDL_CreateTexture");
@@ -35,12 +35,12 @@ namespace SDLlib
 		}
 	}
 
-	bool Texture::is_valid() const
+	bool Texture::IsValid() const
 	{
 		return texture_ != nullptr;
 	}
 
-	SDL_Texture* Texture::get() const
+	SDL_Texture* Texture::Get() const
 	{
 		return texture_;
 	}

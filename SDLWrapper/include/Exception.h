@@ -9,9 +9,9 @@ namespace SDLlib
 		Exception() = delete;
 		explicit Exception(const char* function);
 		virtual ~Exception() noexcept = default;
-		static std::string create_error_message(const char* function, const char* error);
-		[[nodiscard]] std::string get_function() const;
-		[[nodiscard]] std::string get_error() const;
+		static std::string CreateErrorMessage(const char* function, const char* error);
+		[[nodiscard]] std::string GetFunction() const;
+		[[nodiscard]] std::string GetError() const;
 	private:
 		std::string function_;
 		std::string error_;

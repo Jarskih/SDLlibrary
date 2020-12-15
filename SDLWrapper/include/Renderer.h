@@ -18,12 +18,12 @@ namespace SDLlib
 		Renderer& operator=(const Renderer&) = delete;
 		Renderer& operator=(const Renderer&&) = delete;
 		~Renderer();
-		void set_render_target(const Texture& texture) const;
-		void set_render_draw_color(Color color) const;
-		void render_copy(const Texture& texture) const;
-		void render_clear() const;
-		void render_present() const;
-		[[nodiscard]] bool is_valid() const;
+		void SetRenderTarget(const Texture& texture) const;
+		void SetRenderDrawColor(Color color) const;
+		void RenderCopy(const Texture& texture) const;
+		void RenderClear() const;
+		void RenderPresent() const;
+		[[nodiscard]] bool IsValid() const;
 		[[nodiscard]] SDL_Renderer* get() const;
 	private:
 		SDL_Renderer* renderer_ = nullptr;

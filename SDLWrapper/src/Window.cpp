@@ -23,38 +23,38 @@ namespace SDLlib
 		}
 	}
 
-	SDL_Window* Window::get() const
+	SDL_Window* Window::Get() const
 	{
 		return window_;
 	}
 
-	bool Window::is_valid() const
+	bool Window::IsValid() const
 	{
 		return window_ != nullptr;
 	}
 
-	bool Window::IsWindowBordered() const
+	bool Window::IsBordered() const
 	{
 		const int flags = SDL_GetWindowFlags(window_);
 		return !(flags & SDL_WINDOW_BORDERLESS);
 	}
 
-	bool Window::IsWindowMaximized() const
+	bool Window::IsMaximized() const
 	{
 		const int flags = SDL_GetWindowFlags(window_);
 		return flags & SDL_WINDOW_MAXIMIZED;
 	}
 
-	bool Window::IsWindowMinimized() const
+	bool Window::IsMinimized() const
 	{
 		const int flags = SDL_GetWindowFlags(window_);
 		return flags & SDL_WINDOW_MINIMIZED;
 	}
 
-	bool Window::IsWindowRaised() const
+	bool Window::IsFullscreen() const
 	{
 		const int flags = SDL_GetWindowFlags(window_);
-		return false; // TODO
+		return flags & SDL_WINDOW_FULLSCREEN || flags & SDL_WINDOW_FULLSCREEN_DESKTOP;
 	}
 
 	void Window::MaximizeWindow() const
@@ -80,6 +80,7 @@ namespace SDLlib
 	{
 		SDL_SetWindowBordered(window_, static_cast<SDL_bool>(is_bordered));
 	}
+
 	/// <summary>
 	/// Use this function to set the brightness (gamma multiplier) for the display that owns a given window.
 	/// </summary>
@@ -99,21 +100,21 @@ namespace SDLlib
 
 	bool Window::SetFullscreen(Uint32 flags) const
 	{
-		int result = SDL_SetWindowFullscreen(window_, flags);
+		const int result = SDL_SetWindowFullscreen(window_, flags);
 		return result == 0 ? true : false;
 	}
 
-	void Window::SetWindowPosition(int x, int y)
+	void Window::SetWindowPosition(int x, int y) const
 	{
 		SDL_SetWindowPosition(window_, x, y);
 	}
 
-	void Window::SetWindowSize(const int width, const int height)
+	void Window::SetWindowSize(const int width, const int height) const
 	{
 		SDL_SetWindowSize(window_, width, height);
 	}
 
-	void Window::SetWindowTitle(const std::string& title)
+	void Window::SetWindowTitle(const std::string& title) const
 	{
 		SDL_SetWindowTitle(window_, title.c_str());
 	}

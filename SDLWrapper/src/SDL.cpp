@@ -16,7 +16,7 @@ namespace SDLlib
 		SDL_Quit();
 	}
 
-	bool SDL::is_valid() const
+	bool SDL::IsValid() const
 	{
 		return SDL_WasInit(flags_) != 0;
 	}

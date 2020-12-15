@@ -17,8 +17,8 @@ namespace SDLlib {
 		Texture& operator=(const Texture&) = delete;
 		Texture& operator=(const Texture&&) = delete;
 		~Texture();
-		[[nodiscard]] bool is_valid() const;
-		[[nodiscard]] SDL_Texture* get() const;
+		[[nodiscard]] bool IsValid() const;
+		[[nodiscard]] SDL_Texture* Get() const;
 	private:
 		SDL_Texture* texture_ = nullptr;
 	};

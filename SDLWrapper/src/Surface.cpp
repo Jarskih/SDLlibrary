@@ -9,7 +9,7 @@ namespace SDLlib
 		surface_ = IMG_Load(path.string().c_str());
 		if (surface_ == nullptr)
 		{
-			throw Exception("SDL_LoadBMP");
+			throw Exception("IMG_Load");
 		}
 	}
 
@@ -18,7 +18,7 @@ namespace SDLlib
 		SDL_FreeSurface(surface_);
 	}
 
-	SDL_Surface* Surface::get() const
+	SDL_Surface* Surface::Get() const
 	{
 		return surface_;
 	}

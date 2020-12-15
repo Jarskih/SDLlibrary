@@ -19,12 +19,12 @@ namespace SDLlib
 		Window& operator=(const Window&) = delete;
 		Window& operator=(const Window&&) = delete;
 		~Window();
-		[[nodiscard]] SDL_Window* get() const;
-		[[nodiscard]] bool is_valid() const;
-		[[nodiscard]] bool IsWindowBordered() const;
-		[[nodiscard]] bool IsWindowMaximized() const;
-		[[nodiscard]] bool IsWindowMinimized() const;
-		[[nodiscard]] bool IsWindowRaised() const;
+		[[nodiscard]] SDL_Window* Get() const;
+		[[nodiscard]] bool IsValid() const;
+		[[nodiscard]] bool IsBordered() const;
+		[[nodiscard]] bool IsMaximized() const;
+		[[nodiscard]] bool IsMinimized() const;
+		[[nodiscard]] bool IsFullscreen() const;
 		void MaximizeWindow() const;
 		void MinimizeWindow() const;
 		void RaiseWindow() const;
@@ -33,9 +33,9 @@ namespace SDLlib
 		bool SetWindowBrightness(float brightness) const;
 		bool SetWindowDisplayMode(SDL_DisplayMode* display_mode) const;
 		bool SetFullscreen(Uint32 flags) const;
-		void SetWindowPosition(int x, int y);
-		void SetWindowSize(int width, int height);
-		void SetWindowTitle(const std::string& title);
+		void SetWindowPosition(int x, int y) const;
+		void SetWindowSize(int width, int height) const;
+		void SetWindowTitle(const std::string& title) const;
 
 	private:
 		SDL_Window* window_ = nullptr;

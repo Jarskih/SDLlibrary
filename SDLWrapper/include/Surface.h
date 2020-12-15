@@ -16,7 +16,7 @@ namespace SDLlib
 		Surface& operator=(const Surface&) = delete;
 		Surface& operator=(const Surface&&) = delete;
 		~Surface();
-		SDL_Surface* get() const;
+		[[nodiscard]] SDL_Surface* Get() const;
 	private:
 		SDL_Surface* surface_ = nullptr;
 	};

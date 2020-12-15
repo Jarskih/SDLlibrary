@@ -8,7 +8,7 @@ namespace SDLlib
 {
 	Renderer::Renderer(const Window& window, const int driver_index, const Uint32 flags)
 	{
-		renderer_ = SDL_CreateRenderer(window.get(), driver_index, flags);
+		renderer_ = SDL_CreateRenderer(window.Get(), driver_index, flags);
 		if (renderer_ == nullptr)
 		{
 			throw Exception("SDL_CreateRenderer");
@@ -23,32 +23,32 @@ namespace SDLlib
 		}
 	}
 
-	void Renderer::set_render_target(const Texture& texture) const
+	void Renderer::SetRenderTarget(const Texture& texture) const
 	{
-		SDL_SetRenderTarget(renderer_, texture.get());
+		SDL_SetRenderTarget(renderer_, texture.Get());
 	}
 
-	void Renderer::set_render_draw_color(const Color color) const
+	void Renderer::SetRenderDrawColor(const Color color) const
 	{
 		SDL_SetRenderDrawColor(renderer_, color.r, color.g, color.b, color.a);
 	}
 
-	void Renderer::render_copy(const Texture& texture) const
+	void Renderer::RenderCopy(const Texture& texture) const
 	{
-		SDL_RenderCopy(renderer_, texture.get(), nullptr, nullptr);
+		SDL_RenderCopy(renderer_, texture.Get(), nullptr, nullptr);
 	}
 
-	void Renderer::render_clear() const
+	void Renderer::RenderClear() const
 	{
 		SDL_RenderClear(renderer_);
 	}
 
-	void Renderer::render_present() const
+	void Renderer::RenderPresent() const
 	{
 		SDL_RenderPresent(renderer_);
 	}
 
-	bool Renderer::is_valid() const
+	bool Renderer::IsValid() const
 	{
 		return renderer_ != nullptr;
 	}
