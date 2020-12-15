@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <SDL2/SDL.h>
-#include "Window.h"
 
 namespace SDLlib
 {
@@ -19,7 +18,7 @@ namespace SDLlib
 		Renderer& operator=(const Renderer&&) = delete;
 		~Renderer();
 		void SetRenderTarget(const Texture& texture) const;
-		void SetRenderDrawColor(Color color) const;
+		void SetRenderDrawColor(const Color& color) const;
 		void RenderCopy(const Texture& texture) const;
 		void RenderClear() const;
 		void RenderPresent() const;

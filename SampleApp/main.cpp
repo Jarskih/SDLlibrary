@@ -1,9 +1,11 @@
 #pragma comment(lib, "../build/Debug/SDLWrapper.lib")
+
 #include <iostream>
 #include "SDLlib.h"
 
-int main(int, char* []) try {
+int main([[maybe_unused]] int, [[maybe_unused]] char* []) try {
 	const SDLlib::SDL sdl(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+	const SDLlib::SDLImage sdl_image(IMG_INIT_JPG | IMG_INIT_PNG);
 	const SDLlib::Window window("SampleApp", SDLlib::Point(0, 0), SDLlib::WindowSize(640, 480), SDL_WINDOW_SHOWN);
 	const SDLlib::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 	const SDLlib::Texture texture(renderer, "../assets/test.bmp");
@@ -17,10 +19,10 @@ int main(int, char* []) try {
 			}
 		}
 
-		renderer.set_render_draw_color(SDLlib::Color(0, 0, 0, 0));
-		renderer.render_clear();
-		renderer.render_copy(texture);
-		renderer.render_present();
+		renderer.SetRenderDrawColor(SDLlib::Color(0, 0, 0, 0));
+		renderer.RenderClear();
+		renderer.RenderCopy(texture);
+		renderer.RenderPresent();
 	}
 
 	return 0;

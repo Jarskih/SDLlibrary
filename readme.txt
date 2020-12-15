@@ -1,8 +1,8 @@
-SampleApp
+SampleApp:
 contains an example how to create game with the library
 
-SDLWrapper
+SDLWrapper:
 contains all library code
 
-Tests
+Tests:
 contains all tests for the SDLWrapper library

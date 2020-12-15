@@ -28,7 +28,7 @@ namespace SDLlib
 		SDL_SetRenderTarget(renderer_, texture.Get());
 	}
 
-	void Renderer::SetRenderDrawColor(const Color color) const
+	void Renderer::SetRenderDrawColor(const Color& color) const
 	{
 		SDL_SetRenderDrawColor(renderer_, color.r, color.g, color.b, color.a);
 	}
