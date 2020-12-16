@@ -11,10 +11,10 @@ namespace SDLlib
 	public:
 		Surface() = delete;
 		Surface(std::filesystem::path path);
-		Surface(const Surface&) = delete;
-		Surface(const Surface&&) = delete;
-		Surface& operator=(const Surface&) = delete;
-		Surface& operator=(const Surface&&) = delete;
+		Surface(Surface& rhs) = delete;
+		Surface(Surface&& rhs) noexcept;
+		Surface& operator=(const Surface& rhs) = delete;
+		Surface& operator=(Surface&& rhs) noexcept;
 		~Surface();
 		[[nodiscard]] int GetWidth() const;
 		[[nodiscard]] int GetHeight() const;

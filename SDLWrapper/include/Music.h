@@ -9,10 +9,10 @@ namespace SDLlib
 	public:
 		Music() = delete;
 		explicit Music(std::string path);
-		Music(Music&) = delete;
-		Music(Music&&) noexcept;
-		Music& operator=(const Music&) = delete;
-		Music& operator=(Music&&) noexcept;
+		Music(Music& rhs) = delete;
+		Music(Music&& rhs) noexcept;
+		Music& operator=(const Music& rhs) = delete;
+		Music& operator=(Music&& rhs) noexcept;
 		~Music();
 		void Play(int loops) const;
 		void Pause();

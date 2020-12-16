@@ -13,6 +13,27 @@ namespace SDLlib
 		}
 	}
 
+	Surface::Surface(Surface&& rhs) noexcept : surface_(rhs.surface_)
+	{
+		rhs.surface_ = nullptr;
+	}
+
+	Surface& Surface::operator=(Surface&& rhs) noexcept
+	{
+		if (&rhs == this)
+		{
+			return *this;
+		}
+		if (surface_ != nullptr)
+		{
+			SDL_FreeSurface(surface_);
+		}
+
+		surface_ = rhs.surface_;
+		rhs.surface_ = nullptr;
+		return *this;
+	}
+
 	Surface::~Surface()
 	{
 		if (surface_ != nullptr)

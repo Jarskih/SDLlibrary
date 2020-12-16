@@ -8,6 +8,10 @@ namespace SDLlib
 	public:
 		Exception() = delete;
 		explicit Exception(const char* function);
+		Exception(Exception&) = delete;
+		Exception(Exception&&) = delete;
+		Exception& operator=(const Exception&) = delete;
+		Exception& operator=(Exception&&) = delete;
 		virtual ~Exception() noexcept = default;
 		static std::string CreateErrorMessage(const char* function, const char* error);
 		[[nodiscard]] std::string GetFunction() const;
