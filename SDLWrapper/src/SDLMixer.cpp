@@ -18,6 +18,9 @@ namespace SDLlib {
 	SDLMixer::~SDLMixer()
 	{
 		Mix_CloseAudio();
-		Mix_Quit();
+		while (Mix_Init(0))
+		{
+			Mix_Quit();
+		}
 	}
 }

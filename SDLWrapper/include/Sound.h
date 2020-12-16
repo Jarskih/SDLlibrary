@@ -10,9 +10,9 @@ namespace SDLlib
 		Sound() = delete;
 		explicit Sound(std::string path);
 		Sound(Sound& rhs) = delete;
-		Sound(Sound&& rhs) = delete;
-		Sound& operator=(Sound& rhs) = delete;
-		Sound& operator=(Sound&& rhs) = delete;
+		Sound(Sound&& rhs) noexcept;
+		Sound& operator=(const Sound& rhs) = delete;
+		Sound& operator=(Sound&& rhs) noexcept;
 		~Sound();
 		void PlayChannel(int channel, int loops);
 		void Pause() const;

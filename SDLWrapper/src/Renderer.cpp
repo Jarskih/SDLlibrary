@@ -15,6 +15,27 @@ namespace SDLlib
 		}
 	}
 
+	Renderer::Renderer(Renderer&& rhs) noexcept : renderer_(rhs.renderer_)
+	{
+		rhs.renderer_ = nullptr;
+	}
+
+	Renderer& Renderer::operator=(Renderer&& rhs) noexcept
+	{
+		if (&rhs == this)
+		{
+			return *this;
+		}
+		if (renderer_ != nullptr)
+		{
+			SDL_DestroyRenderer(renderer_);
+		}
+
+		renderer_ = rhs.renderer_;
+		rhs.renderer_ = nullptr;
+		return *this;
+	}
+
 	Renderer::~Renderer()
 	{
 		if (renderer_ != nullptr)

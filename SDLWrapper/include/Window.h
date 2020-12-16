@@ -12,10 +12,10 @@ namespace SDLlib
 	public:
 		Window() = delete;
 		Window(const std::string& title, SDL_Rect rectangle, Uint32 flags);
-		Window(const Window&) = delete;
-		Window(const Window&&) = delete;
+		Window(Window&) = delete;
+		Window(Window&&) noexcept;
 		Window& operator=(const Window&) = delete;
-		Window& operator=(const Window&&) = delete;
+		Window& operator=(Window&&) noexcept;
 		~Window();
 		[[nodiscard]] SDL_Window* Get() const;
 		[[nodiscard]] bool IsValid() const;

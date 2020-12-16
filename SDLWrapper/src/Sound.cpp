@@ -13,6 +13,27 @@ namespace SDLlib
 		}
 	}
 
+	Sound::Sound(Sound&& rhs) noexcept : sound_(rhs.sound_)
+	{
+		rhs.sound_ = nullptr;
+	}
+
+	Sound& Sound::operator=(Sound&& rhs) noexcept
+	{
+		if (&rhs == this)
+		{
+			return *this;
+		}
+		if (sound_ != nullptr)
+		{
+			Mix_FreeChunk(sound_);
+		}
+
+		sound_ = rhs.sound_;
+		rhs.sound_ = nullptr;
+		return *this;
+	}
+
 	Sound::~Sound()
 	{
 		if (sound_ != nullptr)

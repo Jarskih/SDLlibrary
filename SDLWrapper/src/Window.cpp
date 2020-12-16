@@ -13,6 +13,26 @@ namespace SDLlib
 		}
 	}
 
+	Window::Window(Window&& rhs) noexcept : window_(rhs.window_)
+	{
+		rhs.window_ = nullptr;
+	}
+
+	Window& Window::operator=(Window&& rhs) noexcept
+	{
+		if (&rhs == this)
+			return *this;
+
+		if (window_ != nullptr)
+		{
+			SDL_DestroyWindow(window_);
+		}
+
+		window_ = rhs.window_;
+		rhs.window_ = nullptr;
+		return *this;
+	}
+
 	Window::~Window()
 	{
 		if (window_ != nullptr)

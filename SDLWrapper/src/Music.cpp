@@ -12,6 +12,27 @@ namespace SDLlib
 		}
 	}
 
+	Music::Music(Music&& rhs) noexcept : music_(rhs.music_)
+	{
+		rhs.music_ = nullptr;
+	}
+
+	Music& Music::operator=(Music&& rhs) noexcept
+	{
+		if (&rhs == this)
+		{
+			return *this;
+		}
+		if (music_ != nullptr)
+		{
+			Mix_FreeMusic(music_);
+		}
+
+		music_ = rhs.music_;
+		rhs.music_ = nullptr;
+		return *this;
+	}
+
 	Music::~Music()
 	{
 		if (music_ != nullptr)

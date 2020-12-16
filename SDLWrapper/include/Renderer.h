@@ -12,10 +12,10 @@ namespace SDLlib
 	public:
 		Renderer() = delete;
 		Renderer(const Window& window, int driver_index, Uint32 flags);
-		Renderer(const Renderer&) = delete;
-		Renderer(const Renderer&&) = delete;
+		Renderer(Renderer&) = delete;
+		Renderer(Renderer&&) noexcept;
 		Renderer& operator=(const Renderer&) = delete;
-		Renderer& operator=(const Renderer&&) = delete;
+		Renderer& operator=(Renderer&&) noexcept;
 		~Renderer();
 		void SetRenderTarget(const Texture& texture) const;
 		void SetRenderDrawColor(const Color& color) const;
