@@ -4,7 +4,7 @@
   "dependencies": [
     "sdl2",
     "sdl2-image",
-    "libpng",
-    "zlib"
+    "sdl2-mixer",
+    "sdl2-ttf"
   ]
 }

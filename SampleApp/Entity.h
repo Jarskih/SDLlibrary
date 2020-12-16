@@ -5,9 +5,8 @@ class Entity
 {
 public:
 	Entity() = delete;
-	Entity(const SDLlib::Renderer& renderer, SDL_Point position, SDLlib::Rectangle size, const std::string& path);
-	void Update();
-	void Render(const SDLlib::Renderer& renderer) const;
+	Entity(const SDLlib::Renderer& renderer, SDL_Rect rectangle, const std::string& path);
+	void Render(const SDLlib::Renderer& renderer);
 private:
 	int x_{};
 	int y_{};

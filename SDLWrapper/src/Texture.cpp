@@ -1,11 +1,9 @@
 ﻿#include "Texture.h"
 
 #include <filesystem>
-
 #include "Renderer.h"
 #include "Surface.h"
 #include "Exception.h"
-#include "WindowSize.h"
 
 namespace SDLlib
 {
@@ -16,6 +14,7 @@ namespace SDLlib
 		{
 			throw Exception("SDL_CreateTexture");
 		}
+		SDL_QueryTexture(texture_, nullptr, nullptr, &width_, &height_);
 	}
 
 	Texture::Texture(const Renderer& renderer, const std::filesystem::path file_path)
@@ -34,6 +33,7 @@ namespace SDLlib
 		if (texture_ != nullptr)
 		{
 			SDL_DestroyTexture(texture_);
+			texture_ = nullptr;
 		}
 	}
 
@@ -47,8 +47,13 @@ namespace SDLlib
 		return texture_;
 	}
 
-	Rectangle Texture::Size() const
+	int Texture::GetWidth() const
 	{
-		return Rectangle(width_, height_);
+		return width_;
+	}
+
+	int Texture::GetHeight() const
+	{
+		return height_;
 	}
 }

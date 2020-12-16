@@ -15,7 +15,21 @@ namespace SDLlib
 
 	Surface::~Surface()
 	{
-		SDL_FreeSurface(surface_);
+		if (surface_ != nullptr)
+		{
+			SDL_FreeSurface(surface_);
+			surface_ = nullptr;
+		}
+	}
+
+	int Surface::GetWidth() const
+	{
+		return surface_->w;
+	}
+
+	int Surface::GetHeight() const
+	{
+		return surface_->h;
 	}
 
 	SDL_Surface* Surface::Get() const

@@ -20,6 +20,7 @@ namespace SDLlib
 		if (renderer_ != nullptr)
 		{
 			SDL_DestroyRenderer(renderer_);
+			renderer_ = nullptr;
 		}
 	}
 
@@ -33,7 +34,7 @@ namespace SDLlib
 		SDL_SetRenderDrawColor(renderer_, color.r, color.g, color.b, color.a);
 	}
 
-	void Renderer::RenderCopy(const Texture& texture, const SDL_Rect* source, const SDL_Rect* destination) const
+	void Renderer::RenderCopy(const Texture& texture, SDL_Rect* source, SDL_Rect* destination) const
 	{
 		SDL_RenderCopy(renderer_, texture.Get(), source, destination);
 	}

@@ -1,7 +1,6 @@
 #pragma comment(lib, "../build/Debug/SDLWrapper.lib")
 
 #include <iostream>
-
 #include "Entity.h"
 #include "SDLlib.h"
 
@@ -10,12 +9,25 @@
 int main([[maybe_unused]] int, [[maybe_unused]] char* []) try {
 	// Init SDL
 	const SDLlib::SDL sdl(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+	const SDLlib::SDLMixer mixer(MIX_INIT_OGG | MIX_INIT_MP3);
 
 	// Create window, renderer etc.
-	const SDLlib::Window window("SampleApp", SDLlib::Point(0, 0), SDLlib::Rectangle(640, 480), SDL_WINDOW_SHOWN);
+	const SDLlib::Window window("SampleApp", SDL_Rect{ 0, 0, 640, 480 }, SDL_WINDOW_SHOWN);
 	const SDLlib::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-	const Entity entity(renderer, SDL_Point{ 400,200 }, SDLlib::Rectangle(100, 100), "../assets/entity.png");
+	const SDLlib::Texture background(renderer, "../assets/bg.png");
+	SDL_Rect background_rect{ 0,0,640,480 };
+
+	Entity entity(renderer, SDL_Rect{ 200, 200, 100, 50 }, "../assets/entity.png");
+
+	// Sound
+	SDLlib::Sound sound("../assets/game1.wav");
+	sound.PlayChannel(1, 0);
+	sound.Pause();
+
+	// Music
+	const SDLlib::Music music("../assets/game1.wav");
+	music.Play(1);
 
 	while (true)
 	{
@@ -25,9 +37,9 @@ int main([[maybe_unused]] int, [[maybe_unused]] char* []) try {
 				break;
 			}
 		}
-
 		renderer.SetRenderDrawColor(SDLlib::Color(0, 0, 0, 0));
 		renderer.RenderClear();
+		renderer.RenderCopy(background, &background_rect, nullptr);
 		entity.Render(renderer);
 		renderer.RenderPresent();
 	}

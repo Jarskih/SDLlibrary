@@ -1,14 +1,12 @@
 ﻿#include "Window.h"
 #include <SDL2/SDL.h>
 #include "Exception.h"
-#include "Point.h"
-#include "WindowSize.h"
 
 namespace SDLlib
 {
-	Window::Window(const std::string& title, const Point position, const Rectangle size, const Uint32 flags)
+	Window::Window(const std::string& title, const SDL_Rect rectangle, const Uint32 flags)
 	{
-		window_ = SDL_CreateWindow(title.c_str(), position.x, position.y, size.w, size.h, flags);
+		window_ = SDL_CreateWindow(title.c_str(), rectangle.x, rectangle.y, rectangle.w, rectangle.h, flags);
 		if (window_ == nullptr)
 		{
 			throw Exception("SDL_CreateWindow");
@@ -20,6 +18,7 @@ namespace SDLlib
 		if (window_ != nullptr)
 		{
 			SDL_DestroyWindow(window_);
+			window_ = nullptr;
 		}
 	}
 
@@ -79,17 +78,6 @@ namespace SDLlib
 	void Window::SetWindowBordered(bool is_bordered) const
 	{
 		SDL_SetWindowBordered(window_, static_cast<SDL_bool>(is_bordered));
-	}
-
-	/// <summary>
-	/// Use this function to set the brightness (gamma multiplier) for the display that owns a given window.
-	/// </summary>
-	/// <param name="brightness">the brightness (gamma multiplier) value to set where 0.0 is completely dark and 1.0 is normal brightness</param>
-	/// <returns>true if brigtness value is supported</returns>
-	bool Window::SetWindowBrightness(const float brightness) const
-	{
-		const int result = SDL_SetWindowBrightness(window_, brightness);
-		return result == 0 ? true : false;
 	}
 
 	bool Window::SetWindowDisplayMode(SDL_DisplayMode* display_mode) const

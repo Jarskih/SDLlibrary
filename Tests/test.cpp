@@ -1,28 +1,24 @@
 #include "pch.h"
-#include <filesystem>
-#include "Renderer.h"
-#include "SDL.h"
-#include <SDL2/SDL.h>
-#include "Texture.h"
-#include "Window.h"
+#include "SDLlib.h"
+#include "Sound.h"
 
 namespace SDLlib
 {
-	TEST(SDL, Init)
+	TEST(SDL, Constructor)
 	{
 		SDL sdl(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 		EXPECT_EQ(sdl.IsValid(), true);
 	}
 
-	TEST(Window, CreateWindow)
+	TEST(Window, Constructor)
 	{
-		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
+		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
 		EXPECT_EQ(window.IsValid(), true);
 	}
 
-	TEST(Window, IsBordered)
+	TEST(Window, SetBordered)
 	{
-		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
+		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
 		EXPECT_EQ(window.IsValid(), true);
 		window.SetWindowBordered(true);
 		EXPECT_EQ(window.IsBordered(), true);
@@ -33,7 +29,7 @@ namespace SDLlib
 
 	TEST(Window, Maximize)
 	{
-		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
+		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
 		EXPECT_EQ(window.IsValid(), true);
 
 		EXPECT_EQ(window.IsMaximized(), false);
@@ -44,7 +40,7 @@ namespace SDLlib
 
 	TEST(Window, Minimize)
 	{
-		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
+		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
 		EXPECT_EQ(window.IsValid(), true);
 
 		EXPECT_EQ(window.IsMinimized(), false);
@@ -55,7 +51,7 @@ namespace SDLlib
 
 	TEST(Window, Fullscreen)
 	{
-		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
+		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
 		EXPECT_EQ(window.IsValid(), true);
 
 		EXPECT_EQ(window.IsFullscreen(), false);
@@ -69,38 +65,43 @@ namespace SDLlib
 		EXPECT_EQ(window.IsFullscreen(), true);
 	}
 
-	TEST(Window, SetBrightness)
+	TEST(Renderer, Constructor)
 	{
-		Window window("test", Point(0, 0), Rectangle(640, 480), 0);
-		EXPECT_EQ(window.IsValid(), true);
-		bool result1 = window.SetWindowBrightness(0.0);
-		EXPECT_EQ(result1, true);
-
-		bool result2 = window.SetWindowBrightness(1.0);
-		EXPECT_EQ(result2, true);
-
-		bool result3 = window.SetWindowBrightness(2.0);
-		EXPECT_EQ(result3, true);
-
-		bool result4 = window.SetWindowBrightness(-1.0);
-		EXPECT_EQ(result4, true);
-
-		bool result5 = window.SetWindowBrightness(100.0);
-		EXPECT_EQ(result5, true);
-	}
-
-	TEST(Renderer, CreateRenderer)
-	{
-		const Window window("test", Point(0, 0), Rectangle(640, 480), 0);
+		const Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
 		Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 		EXPECT_EQ(renderer.IsValid(), true);
 	}
 
-	TEST(Texture, CreateTexture)
+	TEST(Texture, Constructor)
 	{
-		const Window window("test", Point(0, 0), Rectangle(640, 480), 0);
+		const Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
 		const Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
-		const Texture texture(renderer, SDL_PIXELFORMAT_RGBA4444, SDL_TEXTUREACCESS_STATIC, 10, 10);
-		EXPECT_EQ(texture.IsValid(), true);
+		const Texture texture1(renderer, SDL_PIXELFORMAT_RGBA4444, SDL_TEXTUREACCESS_STATIC, 10, 10);
+		EXPECT_EQ(texture1.IsValid(), true);
+
+		const Texture texture2(renderer, "../../assets/entity.png");
+		EXPECT_EQ(texture2.IsValid(), true);
+	}
+
+	TEST(Music, Constructor)
+	{
+		SDL sdl(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+		EXPECT_EQ(sdl.IsValid(), true);
+
+		SDLMixer mixer(MIX_INIT_MP3);
+
+		Music music("../../assets/game1.wav");
+		EXPECT_EQ(music.IsValid(), true);
+	}
+
+	TEST(Sound, Constructor)
+	{
+		SDL sdl(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+		EXPECT_EQ(sdl.IsValid(), true);
+
+		SDLMixer mixer(MIX_INIT_MP3);
+
+		Sound sound("../../assets/game1.wav");
+		EXPECT_EQ(sound.IsValid(), true);
 	}
 }

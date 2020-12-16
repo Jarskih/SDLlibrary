@@ -1,8 +1,6 @@
 ﻿#pragma once
 #include <SDL2/SDL.h>
 #include <string>
-#include "Point.h"
-#include "WindowSize.h"
 
 namespace SDLlib
 {
@@ -13,7 +11,7 @@ namespace SDLlib
 	{
 	public:
 		Window() = delete;
-		Window(const std::string& title, Point position, Rectangle size, Uint32 flags);
+		Window(const std::string& title, SDL_Rect rectangle, Uint32 flags);
 		Window(const Window&) = delete;
 		Window(const Window&&) = delete;
 		Window& operator=(const Window&) = delete;
@@ -30,7 +28,6 @@ namespace SDLlib
 		void RaiseWindow() const;
 		void RestoreWindow() const;
 		void SetWindowBordered(bool is_bordered) const;
-		bool SetWindowBrightness(float brightness) const;
 		bool SetWindowDisplayMode(SDL_DisplayMode* display_mode) const;
 		bool SetFullscreen(Uint32 flags) const;
 		void SetWindowPosition(int x, int y) const;

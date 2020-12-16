@@ -19,7 +19,7 @@ namespace SDLlib
 		~Renderer();
 		void SetRenderTarget(const Texture& texture) const;
 		void SetRenderDrawColor(const Color& color) const;
-		void RenderCopy(const Texture& texture, const SDL_Rect* source, const SDL_Rect* destination) const;
+		void RenderCopy(const Texture& texture, SDL_Rect* source, SDL_Rect* destination) const;
 		void RenderClear() const;
 		void RenderPresent() const;
 		[[nodiscard]] bool IsValid() const;

@@ -6,6 +6,7 @@ namespace SDLlib
 	class SDL
 	{
 	public:
+		SDL() = delete;
 		explicit SDL(Uint32 flags);
 		SDL(const SDL&) = delete;
 		SDL(const SDL&&) = delete;
