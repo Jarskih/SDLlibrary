@@ -1,6 +1,7 @@
 ﻿#include "Renderer.h"
 #include "Color.h"
 #include "Exception.h"
+#include "Rect.h"
 #include "Window.h"
 #include "Texture.h"
 
@@ -55,9 +56,14 @@ namespace SDLlib
 		SDL_SetRenderDrawColor(renderer_, color.r, color.g, color.b, color.a);
 	}
 
-	void Renderer::RenderCopy(const Texture& texture, SDL_Rect* source, SDL_Rect* destination) const
+	void Renderer::RenderCopy(const Texture& texture, Rect source, Rect destination) const
 	{
-		SDL_RenderCopy(renderer_, texture.Get(), source, destination);
+		SDL_RenderCopy(renderer_, texture.Get(), &source.Get(), &destination.Get());
+	}
+
+	void Renderer::RenderCopy(const Texture& texture, Rect source) const
+	{
+		SDL_RenderCopy(renderer_, texture.Get(), &source.Get(), nullptr);
 	}
 
 	void Renderer::RenderClear() const

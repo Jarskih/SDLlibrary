@@ -6,6 +6,7 @@
 
 #include "Color.h"
 #include "Music.h"
+#include "Rect.h"
 #include "Renderer.h"
 #include "SDL.h"
 #include "SDLMixer.h"

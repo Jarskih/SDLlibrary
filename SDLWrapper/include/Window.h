@@ -4,14 +4,13 @@
 
 namespace SDLlib
 {
-	struct Rectangle;
-	struct Point;
+	class Rect;
 
 	class Window
 	{
 	public:
 		Window() = delete;
-		Window(const std::string& title, SDL_Rect rectangle, Uint32 flags);
+		Window(const std::string& title, Rect rectangle, Uint32 flags);
 		Window(const Window& rhs) = delete;
 		Window(Window&& rhs) noexcept;
 		Window& operator=(const Window& rhs) = delete;
@@ -28,8 +27,8 @@ namespace SDLlib
 		void RaiseWindow() const;
 		void RestoreWindow() const;
 		void SetWindowBordered(bool is_bordered) const;
-		bool SetWindowDisplayMode(SDL_DisplayMode* display_mode) const;
-		bool SetFullscreen(Uint32 flags) const;
+		[[nodiscard]] bool SetWindowDisplayMode(SDL_DisplayMode* display_mode) const;
+		[[nodiscard]] bool SetFullscreen(Uint32 flags) const;
 		void SetWindowPosition(int x, int y) const;
 		void SetWindowSize(int width, int height) const;
 		void SetWindowTitle(const std::string& title) const;

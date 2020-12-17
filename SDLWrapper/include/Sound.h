@@ -17,15 +17,14 @@ namespace SDLlib
 		void PlayChannel(int channel, int loops);
 		void Pause() const;
 		void Resume() const;
+		void SetVolume(unsigned int volume) const;
 		[[nodiscard]] bool IsPlaying() const;
 		[[nodiscard]] bool IsPlaused() const;
-		[[nodiscard]] static int GetVolume();
+		[[nodiscard]] int GetVolume() const;
 		[[nodiscard]] Mix_Chunk* GetChunk() const;
 		[[nodiscard]] bool IsValid() const;
-		static void SetVolume(unsigned int volume);
 	private:
 		Mix_Chunk* sound_{};
 		int channel_{};
-		std::string path_{};
 	};
 }

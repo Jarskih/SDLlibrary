@@ -12,13 +12,13 @@ int main([[maybe_unused]] int, [[maybe_unused]] char* []) try {
 	const SDLlib::SDLMixer mixer(MIX_INIT_OGG | MIX_INIT_MP3);
 
 	// Create window, renderer etc.
-	const SDLlib::Window window("SampleApp", SDL_Rect{ 0, 0, 640, 480 }, SDL_WINDOW_SHOWN);
+	const SDLlib::Window window("SampleApp", SDLlib::Rect(0, 0, 640, 480), SDL_WINDOW_SHOWN);
 	const SDLlib::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	const SDLlib::Texture background(renderer, "../assets/bg.png");
-	SDL_Rect background_rect{ 0,0,640,480 };
+	const SDLlib::Rect background_rect(0, 0, 640, 480);
 
-	Entity entity(renderer, SDL_Rect{ 200, 200, 100, 50 }, "../assets/entity.png");
+	const Entity entity(renderer, SDLlib::Rect(200, 200, 100, 50), "../assets/entity.png");
 
 	// Sound
 	SDLlib::Sound sound("../assets/game1.wav");
@@ -39,7 +39,7 @@ int main([[maybe_unused]] int, [[maybe_unused]] char* []) try {
 		}
 		renderer.SetRenderDrawColor(SDLlib::Color(0, 0, 0, 0));
 		renderer.RenderClear();
-		renderer.RenderCopy(background, &background_rect, nullptr);
+		renderer.RenderCopy(background, background_rect);
 		entity.Render(renderer);
 		renderer.RenderPresent();
 	}

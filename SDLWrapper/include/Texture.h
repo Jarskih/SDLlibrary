@@ -10,7 +10,7 @@ namespace SDLlib {
 	{
 	public:
 		Texture() = delete;
-		Texture(const Renderer& renderer, Uint32 format, int access, int w, int h);
+		Texture(const Renderer& renderer, Uint32 format, int access, int width, int height);
 		Texture(const Renderer& renderer, std::filesystem::path file_path);
 		Texture(const Texture& rhs) = delete;
 		Texture(Texture&& rhs) = delete;

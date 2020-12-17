@@ -5,7 +5,6 @@ namespace SDLlib
 {
 	Sound::Sound(std::string path)
 	{
-		path_ = path;
 		sound_ = Mix_LoadWAV(path.c_str());
 		if (sound_ == nullptr)
 		{
@@ -69,7 +68,7 @@ namespace SDLlib
 		return Mix_Paused(channel_);
 	}
 
-	int Sound::GetVolume()
+	int Sound::GetVolume() const
 	{
 		return Mix_VolumeMusic(-1);
 	}
@@ -84,7 +83,7 @@ namespace SDLlib
 		return sound_ != nullptr;
 	}
 
-	void Sound::SetVolume(const unsigned volume)
+	void Sound::SetVolume(const unsigned volume) const
 	{
 		const int vol = std::min(static_cast<int>(volume), 128);
 		Mix_VolumeMusic(vol);

@@ -7,9 +7,9 @@
 
 namespace SDLlib
 {
-	Texture::Texture(const Renderer& renderer, const Uint32 format, const int access, const int w, const int h)
+	Texture::Texture(const Renderer& renderer, const Uint32 format, const int access, const int width, const int height)
 	{
-		texture_ = SDL_CreateTexture(renderer.get(), format, access, w, h);
+		texture_ = SDL_CreateTexture(renderer.get(), format, access, width, height);
 		if (texture_ == nullptr)
 		{
 			throw Exception("SDL_CreateTexture");

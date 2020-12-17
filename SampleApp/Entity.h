@@ -5,13 +5,13 @@ class Entity
 {
 public:
 	Entity() = delete;
-	Entity(const SDLlib::Renderer& renderer, SDL_Rect rectangle, const std::string& path);
-	void Render(const SDLlib::Renderer& renderer);
+	Entity(const SDLlib::Renderer& renderer, SDLlib::Rect rectangle, const std::string& path);
+	void Render(const SDLlib::Renderer& renderer) const;
 private:
 	int x_{};
 	int y_{};
 	SDLlib::Texture texture_;
-	SDL_Rect source_;
-	SDL_Rect destination_;
+	SDLlib::Rect source_;
+	SDLlib::Rect destination_;
 };
 

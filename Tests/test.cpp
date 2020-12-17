@@ -12,13 +12,13 @@ namespace SDLlib
 
 	TEST(Window, Constructor)
 	{
-		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
+		Window window("test", Rect(0, 0, 640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 	}
 
 	TEST(Window, SetBordered)
 	{
-		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
+		Window window("test", Rect(0, 0, 640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 		window.SetWindowBordered(true);
 		EXPECT_EQ(window.IsBordered(), true);
@@ -29,7 +29,7 @@ namespace SDLlib
 
 	TEST(Window, Maximize)
 	{
-		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
+		Window window("test", Rect(0, 0, 640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 
 		EXPECT_EQ(window.IsMaximized(), false);
@@ -40,7 +40,7 @@ namespace SDLlib
 
 	TEST(Window, Minimize)
 	{
-		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
+		Window window("test", Rect(0, 0, 640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 
 		EXPECT_EQ(window.IsMinimized(), false);
@@ -51,7 +51,7 @@ namespace SDLlib
 
 	TEST(Window, Fullscreen)
 	{
-		Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
+		Window window("test", Rect(0, 0, 640, 480), 0);
 		EXPECT_EQ(window.IsValid(), true);
 
 		EXPECT_EQ(window.IsFullscreen(), false);
@@ -67,14 +67,14 @@ namespace SDLlib
 
 	TEST(Renderer, Constructor)
 	{
-		const Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
+		const Window window("test", Rect(0, 0, 640, 480), 0);
 		Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 		EXPECT_EQ(renderer.IsValid(), true);
 	}
 
 	TEST(Texture, Constructor)
 	{
-		const Window window("test", SDL_Rect{ 0, 0, 640, 480 }, 0);
+		const Window window("test", Rect(0, 0, 640, 480), 0);
 		const Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 		const Texture texture1(renderer, SDL_PIXELFORMAT_RGBA4444, SDL_TEXTUREACCESS_STATIC, 10, 10);
 		EXPECT_EQ(texture1.IsValid(), true);

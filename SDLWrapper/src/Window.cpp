@@ -1,12 +1,13 @@
 ﻿#include "Window.h"
 #include <SDL2/SDL.h>
 #include "Exception.h"
+#include "Rect.h"
 
 namespace SDLlib
 {
-	Window::Window(const std::string& title, const SDL_Rect rectangle, const Uint32 flags)
+	Window::Window(const std::string& title, const Rect rectangle, const Uint32 flags)
 	{
-		window_ = SDL_CreateWindow(title.c_str(), rectangle.x, rectangle.y, rectangle.w, rectangle.h, flags);
+		window_ = SDL_CreateWindow(title.c_str(), rectangle.GetX(), rectangle.GetY(), rectangle.GetWidth(), rectangle.GetHeight(), flags);
 		if (window_ == nullptr)
 		{
 			throw Exception("SDL_CreateWindow");
