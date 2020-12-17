@@ -58,6 +58,12 @@ namespace SDLlib
 		Mix_Resume(channel_);
 	}
 
+	void Sound::SetVolume(const unsigned volume) const
+	{
+		const int vol = std::min(static_cast<int>(volume), 128);
+		Mix_VolumeMusic(vol);
+	}
+
 	bool Sound::IsPlaying() const
 	{
 		return Mix_Playing(channel_);
@@ -81,11 +87,5 @@ namespace SDLlib
 	bool Sound::IsValid() const
 	{
 		return sound_ != nullptr;
-	}
-
-	void Sound::SetVolume(const unsigned volume) const
-	{
-		const int vol = std::min(static_cast<int>(volume), 128);
-		Mix_VolumeMusic(vol);
 	}
 }
