@@ -8,7 +8,7 @@ namespace SDLlib
 	public:
 		Exception() = delete;
 		explicit Exception(const char* function);
-		Exception(Exception&) = delete;
+		Exception(const Exception&) = delete;
 		Exception(Exception&&) = delete;
 		Exception& operator=(const Exception&) = delete;
 		Exception& operator=(Exception&&) = delete;

@@ -8,10 +8,10 @@ namespace SDLlib
 	public:
 		SDL() = delete;
 		explicit SDL(Uint32 flags);
-		SDL(const SDL&) = delete;
-		SDL(const SDL&&) = delete;
-		SDL& operator=(const SDL&) = delete;
-		SDL& operator=(const SDL&&) = delete;
+		SDL(const SDL& rhs) = delete;
+		SDL(SDL&& rhs) = delete;
+		SDL& operator=(const SDL& rhs) = delete;
+		SDL& operator=(SDL&& rhs) = delete;
 		~SDL();
 		[[nodiscard]] bool IsValid() const;
 	private:

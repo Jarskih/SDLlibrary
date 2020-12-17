@@ -11,7 +11,7 @@ namespace SDLlib
 	public:
 		Surface() = delete;
 		Surface(std::filesystem::path path);
-		Surface(Surface& rhs) = delete;
+		Surface(const Surface& rhs) = delete;
 		Surface(Surface&& rhs) noexcept;
 		Surface& operator=(const Surface& rhs) = delete;
 		Surface& operator=(Surface&& rhs) noexcept;

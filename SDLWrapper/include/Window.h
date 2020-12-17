@@ -12,7 +12,7 @@ namespace SDLlib
 	public:
 		Window() = delete;
 		Window(const std::string& title, SDL_Rect rectangle, Uint32 flags);
-		Window(Window& rhs) = delete;
+		Window(const Window& rhs) = delete;
 		Window(Window&& rhs) noexcept;
 		Window& operator=(const Window& rhs) = delete;
 		Window& operator=(Window&& rhs) noexcept;

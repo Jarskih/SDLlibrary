@@ -9,7 +9,7 @@ namespace SDLlib
 	public:
 		Sound() = delete;
 		explicit Sound(std::string path);
-		Sound(Sound& rhs) = delete;
+		Sound(const Sound& rhs) = delete;
 		Sound(Sound&& rhs) noexcept;
 		Sound& operator=(const Sound& rhs) = delete;
 		Sound& operator=(Sound&& rhs) noexcept;
